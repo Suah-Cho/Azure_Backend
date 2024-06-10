@@ -58,5 +58,5 @@ jobs:
                     sudo docker-compose pull
                     sudo snap install jq
                     export LATEST_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_backend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')
-                    sudo docker-compose up -d
+                    sudo LATEST_TAG=$LATEST_TAG docker-compose up -d
               
