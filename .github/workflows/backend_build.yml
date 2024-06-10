@@ -44,7 +44,7 @@ jobs:
                 context: .
                 file: ./Dockerfile
                 push: true
-                tags: ${{ secrets.DOCKER_USERNAME }}/aure_backend:${{ steps.tag_version.outputs.new_tag }}
+                tags: ${{ secrets.DOCKER_USERNAME }}/azure_backend:${{ steps.tag_version.outputs.new_tag }}
 
             - name: Restart Docker container
               uses: appleboy/ssh-action@master
