@@ -59,7 +59,7 @@ jobs:
                     sudo snap install jq
                     export BACKEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_backend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')
                     export FRONTEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_frontend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')
-                    echo $BACKEND_TAG
-                    echo $FRONTEND_TAG
-                    sudo BACKEND_TAG=$BACKEND_TAG FRONTEND_TAG=$FRONTEND_TAG docker-compose up -d
+                    echo "$BACKEND_TAG=${BACKEND_TAG}" >> $GITHUB_ENV
+                    echo "$FRONTEND_TAG=${FRONTEND_TAG}" >> $GITHUB_ENV
+                    sudo BACKEND_TAG=${BACKEND_TAG} FRONTEND_TAG=${FRONTEND_TAG} docker-compose up -d
               
