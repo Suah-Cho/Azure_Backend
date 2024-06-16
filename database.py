@@ -5,7 +5,7 @@ def get_db_connetion():
     try:
         con = psycopg2.connect(
             host="sua-db.postgres.database.azure.com",
-            database="postgres",
+            database="sua_db",
             user="postgres",
             password="p@ssw0rd",
             port=5432
