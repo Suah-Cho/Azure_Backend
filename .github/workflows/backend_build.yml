@@ -56,11 +56,9 @@ jobs:
                     cd vm
                     sudo docker-compose down
                     sudo docker-compose pull
-                    export BACKEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_backend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')
-                    export FRONTEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_frontend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')
                     sed -i '/^BACKEND_TAG=/d' .env
                     sed -i '/^FRONTEND_TAG=/d' .env
-                    echo "BACKEND_TAG=${BACKEND_TAG}" >> .env"
-                    echo "FRONTEND_TAG=${FRONTEND_TAG}" >> .env"
+                    echo "BACKEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_backend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')" >> .env
+                    echo "FRONTEND_TAG=$(curl -s "https://hub.docker.com/v2/repositories/suahcho/azure_frontend/tags/?page_size=1&ordering=last_updated" | jq -r '.results[0].name')" >> .env
                     sudo docker-compose up -d
               
