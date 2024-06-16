@@ -62,7 +62,7 @@ def main():
         # con = database.getCon()
 
         cur = con.cursor(cursor_factory=RealDictCursor)
-        cur.execute("select * from gh_data_item limit 100;")
+        cur.execute("select * from gh_data_item where (device_id, data_type_id) = ('397573ec-f29d-45c0-ad26-ec9caf28dd53', '4a57a105-b834-4358-9cb5-fde3b43305ae');")
         data = cur.fetchall()
         data = serialize_data(data)
         cur.close()
