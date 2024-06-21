@@ -93,5 +93,9 @@ def servererror():
 def servererror():
     return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
 
+@app.get("/servererror/501")
+def servererror():
+    return JSONResponse(status_code=501, content={"message": "Internal Server Error"})
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)
