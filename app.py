@@ -81,5 +81,17 @@ def test():
     logging.info("test log")
     return {"message": "Hello, FastAPI!"}
 
+@app.get("/servererror/500")
+def servererror():
+    return JSONResponse(status_code=500, content={"message": "Internal Server Error0"})
+
+@app.get("/servererror/501")
+def servererror():
+    return JSONResponse(status_code=501, content={"message": "Internal Server Error1"})
+
+@app.get("/servererror/502")
+def servererror():
+    return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
+
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)
