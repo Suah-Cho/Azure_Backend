@@ -18,6 +18,7 @@ logger_setup = LoggerSetup()
 # get logger for module
 logger = logging.getLogger(__name__)
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 허용할 origins 목록
@@ -95,3 +96,4 @@ def servererror():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
