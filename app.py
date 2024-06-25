@@ -11,8 +11,6 @@ import uvicorn
 
 app = FastAPI()
 
-logging.basicConfig(filename='fastapi-server.log', level=logging.INFO)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 허용할 origins 목록
