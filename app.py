@@ -7,22 +7,11 @@ from psycopg2.extras import RealDictCursor
 # import loc_database
 import database
 import logging
-# import uvicorn
+import uvicorn
 
 app = FastAPI()
 
-# 허용할 origins 설정
-# origins = [
-#     "http://localhost",
-#     "http://localhost:80",
-#     "http://localhost:3000", # React 앱이 실행되는 도메인
-#     "http://client",
-#     "http://client:80",
-#     "http://client:3000",
-#     "http://40.82.144.200/",
-#     "http://40.82.144.200:80",
-#     "http://40.82.144.200:3000"
-# ]
+logging.basicConfig(filename='fastapi-server.log', level=logging.INFO)
 
 app.add_middleware(
     CORSMiddleware,
@@ -97,5 +86,5 @@ def servererror():
 def servererror():
     return JSONResponse(status_code=501, content={"message": "Internal Server Error"})
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
