@@ -8,15 +8,9 @@ from psycopg2.extras import RealDictCursor
 import database
 import logging
 import uvicorn
-from logging_setup import LoggerSetup
+
 
 app = FastAPI()
-
-# setup root logger
-logger_setup = LoggerSetup()
-
-# get logger for module
-logger = logging.getLogger(__name__)
 
 
 app.add_middleware(
@@ -51,7 +45,7 @@ def main():
     # con = loc_database.getCon()
     if con is None:
         # print("Error connecting to database")
-        logger.error("Error connecting to database")
+        logging.error("Error connecting to database")
 
     try:
         # con = database.getCon()
@@ -65,7 +59,7 @@ def main():
         return JSONResponse(status_code=200, content={"data": data})
     except Exception as e: 
         # print(f"Error connecting to database: {e}")
-        logger.error(f"Error connecting to database: {e}")
+        logging.error(f"Error connecting to database: {e}")
         return JSONResponse(status_code=500, content={"message": "Error connecting to database"})
     finally:
         if con:
@@ -73,17 +67,17 @@ def main():
 
 @app.get("/test")
 def test():
-    logger.info("test log")
+    logging.info("test log")
     return {"message": "Hello, FastAPI!"}
 
 @app.get("/servererror/500")
 def servererror():
-    logger.error("500 Internal Server Error")
+    logging.error("500 Internal Server Error")
     return JSONResponse(status_code=500, content={"message": "Internal Server Error0"})
 
 @app.get("/servererror/501")
 def servererror():
-    logger.error("501 Internal Server Error")
+    logging.error("501 Internal Server Error")
     return JSONResponse(status_code=501, content={"message": "Internal Server Error1"})
 
 @app.get("/servererror/502")
