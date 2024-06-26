@@ -72,16 +72,17 @@ def test():
 
 @app.get("/servererror/500")
 def servererror():
-    logging.error("500 Internal Server Error")
+    logging.error("TEST 500 Internal Server Error")
     return JSONResponse(status_code=500, content={"message": "Internal Server Error0"})
 
 @app.get("/servererror/501")
 def servererror():
-    logging.error("501 Internal Server Error")
+    logging.error("TEST 501 Internal Server Error")
     return JSONResponse(status_code=501, content={"message": "Internal Server Error1"})
 
 @app.get("/servererror/502")
 def servererror():
+    logging.error
     return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
 
 @app.get("/servererror/501")
