@@ -54,5 +54,6 @@ jobs:
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 script: |
                     cd vm
+                    sudo docker-compose down
                     sudo BACKEND_TAG=${{ steps.tag_version.outputs.new_tag }} docker-compose up -d
               
