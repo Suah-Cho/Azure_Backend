@@ -85,7 +85,7 @@ def servererror():
     logging.error
     return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
 
-@app.get("/servererror/501")
+@app.get("/servererror/503")
 def servererror():
     return JSONResponse(status_code=501, content={"message": "Internal Server Error"})
 
