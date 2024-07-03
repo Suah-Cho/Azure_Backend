@@ -82,8 +82,18 @@ def servererror():
 
 @app.get("/servererror/502")
 def servererror():
-    logging.error
-    return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
+    
+    try:
+        cur = con.cursor(cursor_factory=RealDictCursor)
+        cur.execute("select * from gh_data_item_5min where (device_id, data_type_id) = ('397573ec-f29d-45c0-ad26-ec9caf28dd53', '4a57a105-b834-4358-9cb5-fde3b43305ae');")
+        data = cur.fetchall()
+        data = serialize_data(data)
+        cur.close()
+    except Exception as e:
+        logging.error(f"Error connecting to database: {e}")
+        return JSONResponse(status_code=502, content={"message": "Internal Server Error2"})
+    
+
 
 @app.get("/servererror/503")
 def servererror():
